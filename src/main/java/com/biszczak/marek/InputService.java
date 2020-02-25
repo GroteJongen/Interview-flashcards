@@ -6,15 +6,15 @@ public class InputService {
 
 
     public String getQuestion() {
-        return null;
+        return inputStrategy.getQuestion();
     }
 
     public String getAnswer() {
-        return null;
+        return inputStrategy.getAnswer();
     }
 
     public String getCommand() {
-        return null;
+        return inputStrategy.getCommand();
     }
 
 }
