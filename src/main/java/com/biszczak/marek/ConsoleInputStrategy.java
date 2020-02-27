@@ -1,17 +1,22 @@
 package com.biszczak.marek;
 
-public class ConsoleInputStrategy implements InputStrategy {
+import java.util.Scanner;
 
+public class ConsoleInputStrategy implements InputStrategy {
+    private Scanner scanner = new Scanner(System.in);
 
     public String getQuestion() {
-        return null;
+        String questionFromUsreInput = scanner.nextLine();
+        return questionFromUsreInput;
     }
 
     public String getAnswer() {
-        return null;
+        String answerFromUsreInput = scanner.nextLine();
+        return answerFromUsreInput;
     }
 
     public String getCommand() {
-        return null;
+        String commandFromUsreInput = scanner.nextLine();
+        return commandFromUsreInput;
     }
 }
