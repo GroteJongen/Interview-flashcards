@@ -1,3 +1,8 @@
 .idea\
 /.idea/
 /interviewflashcards.iml
+/.idea/vcs.xml
+/.idea/modules.xml
+/.idea/workspace.xml
+/interviewflashcards.iml
+
