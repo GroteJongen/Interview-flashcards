@@ -1,11 +1,14 @@
 package com.biszczak.marek;
 
-public class InputService {
+public class InputContext {
+    public InputContext(InputStrategy inputStrategy) {
+        this.inputStrategy = inputStrategy;
+    }
 
     private InputStrategy inputStrategy;
 
-
     public String getQuestion() {
+
         return inputStrategy.getQuestion();
     }
 
@@ -17,4 +20,7 @@ public class InputService {
         return inputStrategy.getCommand();
     }
 
+    public void setInputStrategy(InputStrategy inputStrategy) {
+        this.inputStrategy = inputStrategy;
+    }
 }
