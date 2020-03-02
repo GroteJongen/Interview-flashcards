@@ -1,13 +1,19 @@
 package com.biszczak.marek;
 
-public class SlashDisplayStrategy implements DisplayStrategy {
 
+import java.util.List;
+
+public class SlashDisplayStrategy implements DisplayStrategy {
+    final String BOARDER = "//////////////////////////////////////////////";
     @Override
-    public void printMenu() {
-        System.out.println("//////////////////////////////////////////////\n" +
-                "1 - Change theme\n " +
-                "2 - Exit\n " +
-                "//////////////////////////////////////////////\n");
+    public void printMenu(List<String> options) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(BOARDER +"\n");
+        for (int i = 0; i <options.size() ; i++) {
+           stringBuilder.append((i+1) + " --> " + options.get(i) + "\n");
+        }
+        stringBuilder.append(BOARDER + "\n");
+        System.out.println(stringBuilder);
     }
 
     @Override

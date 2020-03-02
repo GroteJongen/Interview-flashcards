@@ -1,8 +1,11 @@
 package com.biszczak.marek;
 
+
+import java.util.List;
+
 public interface DisplayStrategy {
 
-    void printMenu();
+    void printMenu(List<String> options);
 
     void printGreeting();
 
