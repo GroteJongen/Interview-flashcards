@@ -1,27 +1,22 @@
 package com.biszczak.marek;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DisplayContext {
     private DisplayStrategy displayStrategy;
+    private final String GREETING = "Hello Dear User";
+    private final String GOODBYE = "Goodbye Dear User";
 
-
-    public DisplayContext(DisplayStrategy displayStrategy) {
-        this.displayStrategy = displayStrategy;
-    }
-
-    public void printMenu(ArrayList options) {
+    public void printMenu(List<String> options){
         this.displayStrategy.printMenu(options);
     }
-    public void printGreeting() {
-        this.displayStrategy.printGreeting();
-    }
-    public void printGoodbye() {
-        this.displayStrategy.printGoodbye();
-    }
 
-    public void setDisplayStrategy(DisplayStrategy displayStrategy) {
-        this.displayStrategy = displayStrategy;
+    public void printGreetings(){
+        displayStrategy.printMessage(GREETING);
+    }
+    public void printGoodbye(){
+        displayStrategy.printMessage(GOODBYE);
     }
 
 }

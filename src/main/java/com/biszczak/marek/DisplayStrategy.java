@@ -7,11 +7,6 @@ public interface DisplayStrategy {
 
     void printMenu(List<String> options);
 
-    void printGreeting();
+    void printMessage(String message);
 
-    void printGoodbye();
-
-    void printFailure();
-
-    void printSucces();
 }

@@ -17,26 +17,11 @@ public class SlashDisplayStrategy implements DisplayStrategy {
     }
 
     @Override
-    public void printGreeting() {
-        System.out.println("//////////////////////////////////////////////\n" +
-                "Hallo dear user\n" +
-                "//////////////////////////////////////////////\n");
-    }
-
-    @Override
-    public void printGoodbye() {
-        System.out.println("//////////////////////////////////////////////\n" +
-                "Goodbye dear User\n" +
-                "//////////////////////////////////////////////\n");
-    }
-
-    @Override
-    public void printFailure() {
-
-    }
-
-    @Override
-    public void printSucces() {
-
+    public void printMessage(String message) {
+        StringBuilder messageToPrint = new StringBuilder();
+        messageToPrint.append(BOARDER + "\n");
+        messageToPrint.append(message + "\n");
+        messageToPrint.append(BOARDER+"\n");
+        System.out.println(messageToPrint);
     }
 }
