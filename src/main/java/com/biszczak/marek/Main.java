@@ -9,15 +9,16 @@ public class Main {
         DisplayStrategy slashDisplayStrategy = new SlashDisplayStrategy();
         InputStrategy consoleInputStrategy = new ConsoleInputStrategy();
         InputContext inputContext = new InputContext(consoleInputStrategy);
-        DisplayContext displayContext = new DisplayContext(slashDisplayStrategy);
+        DisplayContext displayContext = new DisplayContext();
+        displayContext.setDisplayStrategy(slashDisplayStrategy);
         GameController gameController = new GameController(displayContext,inputContext);
         ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Change theme");
         arrayList.add("Exit");
-        arrayList.add("Do something else");
 
         String command;
         boolean exit = false;
-        gameController.displayContext.printGreeting();
+        gameController.displayContext.printGreetings();
         while(!exit){
             gameController.displayContext.printMenu(arrayList);
             command = gameController.inputContext.getCommand();

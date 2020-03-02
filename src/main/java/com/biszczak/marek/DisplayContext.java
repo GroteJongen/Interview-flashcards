@@ -19,4 +19,7 @@ public class DisplayContext {
         displayStrategy.printMessage(GOODBYE);
     }
 
+    public void setDisplayStrategy(DisplayStrategy displayStrategy) {
+        this.displayStrategy = displayStrategy;
+    }
 }
