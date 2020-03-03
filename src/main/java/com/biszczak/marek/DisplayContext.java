@@ -1,6 +1,6 @@
 package com.biszczak.marek;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class DisplayContext {
@@ -8,7 +8,7 @@ public class DisplayContext {
     private final String GREETING = "Hello Dear User";
     private final String GOODBYE = "Goodbye Dear User";
 
-    public void printMenu(List<String> options){
+    public void printMenu(List<MenuOptions> options){
         this.displayStrategy.printMenu(options);
     }
 

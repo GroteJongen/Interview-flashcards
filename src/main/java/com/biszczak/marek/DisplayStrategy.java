@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface DisplayStrategy {
 
-    void printMenu(List<String> options);
+    void printMenu(List<MenuOptions> options);
 
     void printMessage(String message);
 
