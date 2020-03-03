@@ -1,23 +1,22 @@
 package com.biszczak.marek;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class AsterixDisplayStrategy implements DisplayStrategy{
-   private final String THEME_NAME = "Asterix Theme";
+public class AstrixDisplayStrategy implements DisplayStrategy{
+   private final String themeName = "Astrix Theme";
 
-    public String getThemeName() {
-        return THEME_NAME;
+    public String getName() {
+        return themeName;
     }
 
     final String BOARDER = "***********************************************";
     @Override
-    public void printMenu(List<MenuOptions> options) {
+    public void printMenu(List<String> options) {
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(BOARDER + "\n");
         for (int i = 0; i < options.size(); i++) {
-            stringBuilder.append((i+1) + " --> " + options.get(i).getOPTION_NAME() + "\n");
+            stringBuilder.append((i+1) + " --> " + options.get(i) + "\n");
         }
         stringBuilder.append(BOARDER + "\n");
         System.out.println(stringBuilder);

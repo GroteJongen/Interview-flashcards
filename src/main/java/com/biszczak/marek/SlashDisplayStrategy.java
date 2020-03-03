@@ -6,16 +6,16 @@ import java.util.List;
 public class SlashDisplayStrategy implements DisplayStrategy {
     private final String THEME_NAME = "Slash Theme";
 
-    public String getThemeName(){
+    public String getName(){
         return THEME_NAME;
     }
     final String BOARDER = "//////////////////////////////////////////////";
     @Override
-    public void printMenu(List<MenuOptions> options) {
+    public void printMenu(List<String> options) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(BOARDER +"\n");
         for (int i = 0; i <options.size() ; i++) {
-           stringBuilder.append((i+1) + " --> " + options.get(i).getOPTION_NAME() + "\n");
+           stringBuilder.append((i+1) + " --> " + options.get(i) + "\n");
         }
         stringBuilder.append(BOARDER + "\n");
         System.out.println(stringBuilder);

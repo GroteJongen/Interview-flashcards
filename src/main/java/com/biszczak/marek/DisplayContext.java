@@ -1,25 +1,39 @@
 package com.biszczak.marek;
 
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-public class DisplayContext {
+class DisplayContext {
     private DisplayStrategy displayStrategy;
-    private final String GREETING = "Hello Dear User";
-    private final String GOODBYE = "Goodbye Dear User";
 
-    public void printMenu(List<MenuOptions> options){
-        this.displayStrategy.printMenu(options);
-    }
-    public void otherTest(){}
-    public void printGreetings(){
-        displayStrategy.printMessage(GREETING);
-    }
-    public void printGoodbye(){
-        displayStrategy.printMessage(GOODBYE);
+
+    private List<String> menuOptions = Arrays
+            .stream(MenuOptions.values())
+            .map(MenuOptions::getOptionName)
+            .collect(Collectors.toList());
+    private Set<String> strategies = new HashSet<>();
+
+    private final String greeting = "Hello Dear User";
+    private final String goodbye = "Goodbye Dear User";
+
+    void printMenu() {
+        this.displayStrategy.printMenu(this.menuOptions);
     }
 
-    public void setDisplayStrategy(DisplayStrategy displayStrategy) {
+    void printGreetings() {
+        displayStrategy.printMessage(greeting);
+    }
+
+    void printGoodbye() {
+        displayStrategy.printMessage(goodbye);
+    }
+
+    void setDisplayStrategy(DisplayStrategy displayStrategy) {
+        strategies.add(displayStrategy.getName());
         this.displayStrategy = displayStrategy;
     }
 }

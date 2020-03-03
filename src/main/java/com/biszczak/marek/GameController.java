@@ -1,6 +1,6 @@
 package com.biszczak.marek;
 
-public class GameController {
+public class GameController{
     public DisplayContext displayContext;
     public InputContext inputContext;
 

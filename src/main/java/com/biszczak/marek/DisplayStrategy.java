@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface DisplayStrategy {
 
-    void printMenu(List<MenuOptions> options);
+    void printMenu(List<String> options);
 
     void printMessage(String message);
 
-    String getThemeName();
+    String getName();
 
 
 }

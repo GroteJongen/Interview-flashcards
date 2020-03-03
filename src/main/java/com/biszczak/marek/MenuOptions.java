@@ -2,18 +2,19 @@ package com.biszczak.marek;
 
 public enum MenuOptions {
     CHANGE_THEME("Change Theme"),
-    EXIT("Exit"),
+    PLAY("Play"),
+    DISPLAY_THEME("Display Themes"),
     IMPORT("Import"),
     EXPORT("Export"),
-    PLAY("Play");
+    EXIT("Exit");
 
-    private final String OPTION_NAME;
+    private final String optionName;
 
-    MenuOptions(String OPTION_NAME) {
-        this.OPTION_NAME = OPTION_NAME;
+    MenuOptions(String optionName) {
+        this.optionName = optionName;
     }
 
-    public String getOPTION_NAME() {
-        return OPTION_NAME;
+    public String getOptionName() {
+        return optionName;
     }
 }
