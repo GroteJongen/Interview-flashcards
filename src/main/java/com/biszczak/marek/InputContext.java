@@ -8,7 +8,6 @@ public class InputContext {
     private InputStrategy inputStrategy;
 
     public String getQuestion() {
-
         return inputStrategy.getQuestion();
     }
 

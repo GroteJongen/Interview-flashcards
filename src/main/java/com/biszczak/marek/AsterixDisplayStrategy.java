@@ -4,14 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AsterixDisplayStrategy implements DisplayStrategy{
+   private final String THEME_NAME = "Asterix Theme";
+
+    public String getThemeName() {
+        return THEME_NAME;
+    }
+
     final String BOARDER = "***********************************************";
     @Override
-    public void printMenu(List<String> options) {
+    public void printMenu(List<MenuOptions> options) {
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(BOARDER + "\n");
         for (int i = 0; i < options.size(); i++) {
-            stringBuilder.append((i+1) + " --> " + options.get(i) + "\n");
+            stringBuilder.append((i+1) + " --> " + options.get(i).getOPTION_NAME() + "\n");
         }
         stringBuilder.append(BOARDER + "\n");
         System.out.println(stringBuilder);
