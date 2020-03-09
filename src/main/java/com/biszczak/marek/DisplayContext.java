@@ -11,7 +11,7 @@ public class DisplayContext {
     public void printMenu(List<MenuOptions> options){
         this.displayStrategy.printMenu(options);
     }
-
+    public void otherTest(){}
     public void printGreetings(){
         displayStrategy.printMessage(GREETING);
     }
