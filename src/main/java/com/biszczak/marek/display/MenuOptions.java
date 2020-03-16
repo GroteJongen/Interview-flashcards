@@ -1,9 +1,9 @@
-package com.biszczak.marek;
+package com.biszczak.marek.display;
 
 public enum MenuOptions {
     CHANGE_THEME("Change Theme"),
     PLAY("Play"),
-    DISPLAY_THEME("Display Themes"),
+    DISPLAY_THEME("display Themes"),
     IMPORT("Import"),
     EXPORT("Export"),
     EXIT("Exit");

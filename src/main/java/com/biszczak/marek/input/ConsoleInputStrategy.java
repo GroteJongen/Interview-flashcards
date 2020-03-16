@@ -1,4 +1,4 @@
-package com.biszczak.marek;
+package com.biszczak.marek.input;
 
 import java.util.Scanner;
 

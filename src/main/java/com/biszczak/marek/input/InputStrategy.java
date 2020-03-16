@@ -1,4 +1,4 @@
-package com.biszczak.marek;
+package com.biszczak.marek.input;
 
 public interface InputStrategy {
 
