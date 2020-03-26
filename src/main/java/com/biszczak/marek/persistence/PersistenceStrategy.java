@@ -18,4 +18,6 @@ public interface PersistenceStrategy {
 
     void delete(Flashcard flashcard);
 
+    List<String> getAllQuestionsToList();
+
 }

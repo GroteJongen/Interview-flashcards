@@ -28,6 +28,9 @@ public class MapPersistenceStrategy implements PersistenceStrategy {
 
   @Override
   public Flashcard getByQuestion(String question) {
+    if (!flashCardMap.containsKey(question)) {
+      return null;
+    }
     String answer = flashCardMap.get(question);
     return new Flashcard(question, answer);
   }
@@ -53,5 +56,10 @@ public class MapPersistenceStrategy implements PersistenceStrategy {
   @Override
   public void delete(Flashcard flashcard) {
     flashCardMap.remove(flashcard.getQuestion());
+  }
+  public List<String> getAllQuestionsToList(){
+    List<String> questions = new ArrayList<>();
+    questions.addAll(flashCardMap.keySet());
+    return questions;
   }
 }

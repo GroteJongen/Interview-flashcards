@@ -6,7 +6,10 @@ public enum MenuOptions {
     DISPLAY_THEME("display Themes"),
     IMPORT("Import"),
     EXPORT("Export"),
+    PRINT_QUESTION("Print Question"),
+    ADD_FLASHCARD("Add flashcard"),
     EXIT("Exit");
+
 
     private final String optionName;
 

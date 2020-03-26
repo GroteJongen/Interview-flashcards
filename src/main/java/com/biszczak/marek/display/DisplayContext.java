@@ -29,6 +29,9 @@ public class DisplayContext {
   public void printGoodbye() {
     displayStrategy.printMessage(goodbye);
   }
+  public void printMessage(String msg){
+    displayStrategy.printMessage(msg);
+  }
 
   public void setDisplayStrategy(DisplayStrategy displayStrategy) {
     strategies.add(displayStrategy.getName());
