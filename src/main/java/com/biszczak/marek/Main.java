@@ -11,27 +11,28 @@ import com.biszczak.marek.persistence.PersistenceContext;
 import com.biszczak.marek.persistence.PersistenceStrategy;
 
 public class Main {
-  public static void main(String[] args) {
-    Flashcard questionOne = new Flashcard("Co to oop?", "Object orientated programing");
-    Flashcard questionTwo = new Flashcard("Co to mapa?", "Struktura przechowująca pytania i odpowiedzi");
-    Flashcard questionThree = new Flashcard("Czy naleśniki z dżemem czy gównem?", "obojętnie");
+    public static void main(String[] args) {
+        Flashcard questionOne = new Flashcard("Co to oop?", "Object orientated programing");
+        Flashcard questionTwo = new Flashcard("Co to mapa?", "Struktura przechowująca pytania i odpowiedzi");
+        Flashcard questionThree = new Flashcard("Czy naleśniki z dżemem czy gównem?", "obojętnie");
 
-    DisplayStrategy slashDisplayStrategy = new SlashDisplayStrategy();
-    InputStrategy consoleInputStrategy = new ConsoleInputStrategy();
+        DisplayStrategy slashDisplayStrategy = new SlashDisplayStrategy();
+        InputStrategy consoleInputStrategy = new ConsoleInputStrategy();
 
-    PersistenceStrategy persistenceStrategy = new MapPersistenceStrategy();
-    PersistenceContext persistenceContext = new PersistenceContext(persistenceStrategy);
+        PersistenceStrategy persistenceStrategy = new MapPersistenceStrategy();
+        PersistenceContext persistenceContext = new PersistenceContext(persistenceStrategy);
 
-    InputContext inputContext = new InputContext(consoleInputStrategy);
-    DisplayContext displayContext = new DisplayContext();
-    displayContext.setDisplayStrategy(slashDisplayStrategy);
+        InputContext inputContext = new InputContext(consoleInputStrategy);
+        DisplayContext displayContext = new DisplayContext();
+        displayContext.setDisplayStrategy(slashDisplayStrategy);
 
 
-    GameController gameController = new GameController(displayContext, inputContext);
-    persistenceContext.save(questionOne);
-    persistenceContext.save(questionTwo);
-    persistenceContext.save(questionThree);
+        persistenceContext.save(questionOne);
+        persistenceContext.save(questionTwo);
+        persistenceContext.save(questionThree);
 
+        GameController gameController = new GameController(displayContext, inputContext, persistenceContext);
+        gameController.play();
 
    /* List<String> listToWrite = new ArrayList<>();
     String command;
@@ -74,5 +75,5 @@ public class Main {
           }
       }*/
     }
-  }
+}
 

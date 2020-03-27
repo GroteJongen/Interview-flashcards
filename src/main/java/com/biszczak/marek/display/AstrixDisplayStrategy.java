@@ -28,7 +28,7 @@ public class AstrixDisplayStrategy implements DisplayStrategy{
         messageToPrint.append(BOARDER + "\n");
         messageToPrint.append(message + "\n");
         messageToPrint.append(BOARDER+"\n");
-        System.out.println(messageToPrint);
+        System.out.print(messageToPrint);
 
     }
 }
