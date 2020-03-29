@@ -9,6 +9,10 @@ import java.util.stream.Collectors;
 public class DisplayContext {
   private DisplayStrategy displayStrategy;
 
+  private List<String> themes = Arrays.stream(Themes.values())
+          .map(Themes::getOptionName)
+          .collect(Collectors.toList());
+
   private List<String> menuOptions =
       Arrays.stream(MenuOptions.values())
           .map(MenuOptions::getOptionName)
@@ -37,4 +41,11 @@ public class DisplayContext {
     strategies.add(displayStrategy.getName());
     this.displayStrategy = displayStrategy;
   }
+  public void printThemes(){
+   this.displayStrategy.printThemes(themes);
+  }
+  public void printQuestions(List<String> questions){
+    this.displayStrategy.printThemes(questions);
+  }
+
 }

@@ -9,6 +9,12 @@ import com.biszczak.marek.input.InputStrategy;
 import com.biszczak.marek.persistence.MapPersistenceStrategy;
 import com.biszczak.marek.persistence.PersistenceContext;
 import com.biszczak.marek.persistence.PersistenceStrategy;
+import com.biszczak.marek.persistence.FileWriterService;
+import com.biszczak.marek.persistence.FileReaderService;
+import com.biszczak.marek.persistence.FormatterService;
+
+
+import java.io.FileWriter;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,13 +31,16 @@ public class Main {
         InputContext inputContext = new InputContext(consoleInputStrategy);
         DisplayContext displayContext = new DisplayContext();
         displayContext.setDisplayStrategy(slashDisplayStrategy);
+        FileWriterService fileWriterService = new FileWriterService();
+        FileReaderService fileReaderService = new FileReaderService();
+        FormatterService formatterService = new FormatterService();
 
 
         persistenceContext.save(questionOne);
         persistenceContext.save(questionTwo);
         persistenceContext.save(questionThree);
 
-        GameController gameController = new GameController(displayContext, inputContext, persistenceContext);
+        GameController gameController = new GameController(displayContext,inputContext,persistenceContext,formatterService,fileReaderService,fileWriterService);
         gameController.play();
 
    /* List<String> listToWrite = new ArrayList<>();

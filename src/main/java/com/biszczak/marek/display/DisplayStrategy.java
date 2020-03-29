@@ -11,5 +11,6 @@ public interface DisplayStrategy {
 
     String getName();
 
+    void printThemes(List<String> themes);
 
 }

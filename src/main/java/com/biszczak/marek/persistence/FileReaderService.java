@@ -10,8 +10,8 @@ import java.util.List;
 public class FileReaderService {
     private static final String EXCEPTION_MSG = "No file detected";
 
-    public List<String> readFile(String filename, String resourcePath) {
-        try (FileReader fileReader = new FileReader(resourcePath + filename);
+    public List<String> readFile(String filename) {
+        try (FileReader fileReader = new FileReader( filename);
              BufferedReader bufferedReader = new BufferedReader(fileReader)) {
             List<String> flashcards = new ArrayList<>();
             String line = bufferedReader.readLine();

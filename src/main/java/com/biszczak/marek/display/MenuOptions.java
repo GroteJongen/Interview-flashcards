@@ -6,7 +6,7 @@ public enum MenuOptions {
     DISPLAY_THEME("display Themes"),
     IMPORT("Import"),
     EXPORT("Export"),
-    PRINT_QUESTION("Print Question"),
+    PRINT_QUESTIONS("Print Questions"),
     ADD_FLASHCARD("Add flashcard"),
     EXIT("Exit");
 

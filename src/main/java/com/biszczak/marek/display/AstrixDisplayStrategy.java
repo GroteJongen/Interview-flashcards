@@ -21,6 +21,15 @@ public class AstrixDisplayStrategy implements DisplayStrategy{
         stringBuilder.append(BOARDER + "\n");
         System.out.println(stringBuilder);
     }
+    public void printThemes(List<String> themes){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(BOARDER +"\n");
+        for (int i = 0; i <themes.size() ; i++) {
+            stringBuilder.append((i+1) + " --> " + themes.get(i) + "\n");
+        }
+        stringBuilder.append(BOARDER + "\n");
+        System.out.println(stringBuilder);
+    }
 
     @Override
     public void printMessage(String message) {

@@ -11,12 +11,9 @@ public class FileWriterService {
   private static final String EXCEPTION_MSG = "No file detected";
 
 
-  private File createFile(String resourcePath, String filename){
-    File file = new File(resourcePath + filename);
-    return file;
-  }
-  public void writeLine(Flashcard flashcard, String fileName, String resourcePath) {
-    try (FileWriter fileWriter = new FileWriter(createFile(fileName,resourcePath), true)) {
+
+  public void writeLine(Flashcard flashcard, String fileName) {
+    try (FileWriter fileWriter = new FileWriter(fileName, true)) {
       fileWriter.write(flashcard.getQuestion() + " : " + flashcard.getAnswer() + "\n");
 
     } catch (IOException e) {
@@ -25,28 +22,13 @@ public class FileWriterService {
     }
   }
 
-  public void writeLines(List<Flashcard> lines, String fileName, String resourcePath) {
-    try (FileWriter fileWriter = new FileWriter(fileName, true)) {
-
-      for(int i = 0; i <lines.size() ; i++) {
-        writeLine(new Flashcard(lines.get(i).getQuestion(),  lines.get(i).getAnswer()),resourcePath,fileName);
-      }
-
-    } catch (IOException e) {
+  public void writeLines(List<Flashcard> lines, String fileName) {
+    for (Flashcard line : lines) {
+      writeLine(new Flashcard(line.getQuestion(), line.getAnswer()), fileName);
+    }
       System.out.println(EXCEPTION_MSG);
       //TODO Implement business exceptions
-    }
   }
 
-
 }
- /* public void writeLines(List<Flashcard> lines) {
-    try (FileWriter fileWriter = new FileWriter(fileName, true)) {
 
-      lines.forEach(this::writeLine);
-
-    } catch (IOException e) {
-      System.out.println(EXCEPTION_MSG);
-      //TODO Implement business exceptions
-    }
-  }*/
