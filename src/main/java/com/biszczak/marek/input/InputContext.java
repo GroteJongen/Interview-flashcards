@@ -18,8 +18,4 @@ public class InputContext {
     public String getCommand() {
         return inputStrategy.getCommand();
     }
-
-    public void setInputStrategy(InputStrategy inputStrategy) {
-        this.inputStrategy = inputStrategy;
-    }
 }

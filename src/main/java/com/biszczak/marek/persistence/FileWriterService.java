@@ -2,33 +2,34 @@ package com.biszczak.marek.persistence;
 
 import com.biszczak.marek.Flashcard;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
 public class FileWriterService {
-  private static final String EXCEPTION_MSG = "No file detected";
+  private final String EXCEPTION_MSG = "No file detected";
 
+  private void writeLine(Flashcard flashcard, String fileName) {
+    final String semicolon = ":";
+    final String newLine = "\n";
+    String formattedLine =
+        String.format(
+            "%s %s %s%s", flashcard.getQuestion(), semicolon, flashcard.getAnswer(), newLine);
 
-
-  public void writeLine(Flashcard flashcard, String fileName) {
     try (FileWriter fileWriter = new FileWriter(fileName, true)) {
-      fileWriter.write(flashcard.getQuestion() + " : " + flashcard.getAnswer() + "\n");
+      fileWriter.write(formattedLine);
 
     } catch (IOException e) {
       System.out.println(EXCEPTION_MSG);
-      //TODO Implement business exceptions
+      // TODO Implement business exceptions
     }
   }
 
-  public void writeLines(List<Flashcard> lines, String fileName) {
-    for (Flashcard line : lines) {
-      writeLine(new Flashcard(line.getQuestion(), line.getAnswer()), fileName);
+  public void writeLines(List<Flashcard> flashcards, String fileName) {
+    for (Flashcard flashcard : flashcards) {
+      writeLine(flashcard, fileName);
     }
-      System.out.println(EXCEPTION_MSG);
-      //TODO Implement business exceptions
+    System.out.println(EXCEPTION_MSG);
+    // TODO Implement business exceptions
   }
-
 }
-

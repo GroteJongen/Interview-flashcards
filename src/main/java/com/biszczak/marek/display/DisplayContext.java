@@ -1,51 +1,49 @@
 package com.biszczak.marek.display;
 
+import com.biszczak.marek.display.themes.Themes;
+
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DisplayContext {
   private DisplayStrategy displayStrategy;
 
-  private List<String> themes = Arrays.stream(Themes.values())
-          .map(Themes::getOptionName)
-          .collect(Collectors.toList());
+  private List<String> themes =
+      Arrays.stream(Themes.values()).map(Themes::getThemeName).collect(Collectors.toList());
 
   private List<String> menuOptions =
       Arrays.stream(MenuOptions.values())
           .map(MenuOptions::getOptionName)
           .collect(Collectors.toList());
-  private Set<String> strategies = new HashSet<>();
-
-  private final String greeting = "Hello Dear User";
-  private final String goodbye = "Goodbye Dear User";
 
   public void printMenu() {
-    this.displayStrategy.printMenu(this.menuOptions);
+    displayStrategy.printList(this.menuOptions);
   }
 
   public void printGreetings() {
+    String greeting = "Hello Dear User";
     displayStrategy.printMessage(greeting);
   }
 
   public void printGoodbye() {
+    String goodbye = "Goodbye Dear User";
     displayStrategy.printMessage(goodbye);
   }
-  public void printMessage(String msg){
+
+  public void printMessage(String msg) {
     displayStrategy.printMessage(msg);
   }
 
-  public void setDisplayStrategy(DisplayStrategy displayStrategy) {
-    strategies.add(displayStrategy.getName());
-    this.displayStrategy = displayStrategy;
-  }
-  public void printThemes(){
-   this.displayStrategy.printThemes(themes);
-  }
-  public void printQuestions(List<String> questions){
-    this.displayStrategy.printThemes(questions);
+  public void printThemes() {
+    displayStrategy.printList(themes);
   }
 
+  public void printQuestions(List<String> questions) {
+    displayStrategy.printList(questions);
+  }
+
+  public void setDisplayStrategy(DisplayStrategy displayStrategy) {
+    this.displayStrategy = displayStrategy;
+  }
 }

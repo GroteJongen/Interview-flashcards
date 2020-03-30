@@ -1,9 +1,9 @@
 package com.biszczak.marek;
 
-import com.biszczak.marek.display.AstrixDisplayStrategy;
+import com.biszczak.marek.display.themes.AstrixTheme;
 import com.biszczak.marek.display.DisplayContext;
-import com.biszczak.marek.display.SlashDisplayStrategy;
-import com.biszczak.marek.display.TriangleDisplayStrategy;
+import com.biszczak.marek.display.themes.SlashTheme;
+import com.biszczak.marek.display.themes.TriangleTheme;
 import com.biszczak.marek.input.InputContext;
 import com.biszczak.marek.persistence.*;
 
@@ -148,15 +148,15 @@ class GameController {
     switch (command) {
       case "1":
       case "astrix":
-        displayContext.setDisplayStrategy(new AstrixDisplayStrategy());
+        displayContext.setDisplayStrategy(new AstrixTheme());
         break;
       case "2":
       case "slash":
-        displayContext.setDisplayStrategy(new SlashDisplayStrategy());
+        displayContext.setDisplayStrategy(new SlashTheme());
         break;
       case "3":
       case "triangle":
-        displayContext.setDisplayStrategy(new TriangleDisplayStrategy());
+        displayContext.setDisplayStrategy(new TriangleTheme());
         break;
     }
   }

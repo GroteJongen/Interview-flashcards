@@ -2,7 +2,7 @@ package com.biszczak.marek;
 
 import com.biszczak.marek.display.DisplayContext;
 import com.biszczak.marek.display.DisplayStrategy;
-import com.biszczak.marek.display.SlashDisplayStrategy;
+import com.biszczak.marek.display.themes.SlashTheme;
 import com.biszczak.marek.input.ConsoleInputStrategy;
 import com.biszczak.marek.input.InputContext;
 import com.biszczak.marek.input.InputStrategy;
@@ -13,16 +13,13 @@ import com.biszczak.marek.persistence.FileWriterService;
 import com.biszczak.marek.persistence.FileReaderService;
 import com.biszczak.marek.persistence.FormatterService;
 
-
-import java.io.FileWriter;
-
 public class Main {
     public static void main(String[] args) {
         Flashcard questionOne = new Flashcard("Co to oop?", "Object orientated programing");
         Flashcard questionTwo = new Flashcard("Co to mapa?", "Struktura przechowująca pytania i odpowiedzi");
         Flashcard questionThree = new Flashcard("Czy naleśniki z dżemem czy gównem?", "obojętnie");
 
-        DisplayStrategy slashDisplayStrategy = new SlashDisplayStrategy();
+        DisplayStrategy slashDisplayStrategy = new SlashTheme();
         InputStrategy consoleInputStrategy = new ConsoleInputStrategy();
 
         PersistenceStrategy persistenceStrategy = new MapPersistenceStrategy();
@@ -49,11 +46,11 @@ public class Main {
     gameController.displayContext.printGreetings();
     while (!exit) {
       List<Flashcard> flashCardList = persistenceContext.getAllFlashcards();
-      gameController.displayContext.printMenu();
+      gameController.displayContext.printList();
       command = gameController.inputContext.getCommand();
       switch (command) {
         case "1":
-          gameController.displayContext.setDisplayStrategy(new AstrixDisplayStrategy());
+          gameController.displayContext.setDisplayStrategy(new AstrixTheme());
           break;
         case "4":
           fileService.readFile("brak");

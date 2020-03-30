@@ -3,20 +3,17 @@ package com.biszczak.marek.input;
 import java.util.Scanner;
 
 public class ConsoleInputStrategy implements InputStrategy {
-    private Scanner scanner = new Scanner(System.in);
+  private Scanner scanner = new Scanner(System.in);
 
-    public String getQuestion() {
-        String questionFromUsreInput = scanner.nextLine();
-        return questionFromUsreInput;
-    }
+  public String getQuestion() {
+    return scanner.nextLine();
+  }
 
-    public String getAnswer() {
-        String answerFromUsreInput = scanner.nextLine();
-        return answerFromUsreInput;
-    }
+  public String getAnswer() {
+    return scanner.nextLine();
+  }
 
-    public String getCommand() {
-        String commandFromUsreInput = scanner.nextLine();
-        return commandFromUsreInput;
-    }
+  public String getCommand() {
+    return scanner.nextLine();
+  }
 }
