@@ -1,7 +1,6 @@
 package com.biszczak.marek.persistence;
 
 import com.biszczak.marek.Flashcard;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ class MapRepositoryTest {
     Flashcard flashcardToTest = mapRepository.getByAnswer(flashcardToPopulate.getAnswer());
     assertEquals(flashcardToPopulate.getQuestion(), flashcardToTest.getQuestion());
     assertEquals(flashcardToPopulate.getAnswer(), flashcardToTest.getAnswer());
-    assertEquals(flashcard, flashcardToTest);
+    assertEquals(flashcardToPopulate, flashcardToTest);
   }
 
   @Test
@@ -37,7 +36,7 @@ class MapRepositoryTest {
     Flashcard flashcardToTest = mapRepository.getByQuestion(flashcardToPopulate.getQuestion());
     assertEquals(flashcardToPopulate.getQuestion(), flashcardToTest.getQuestion());
     assertEquals(flashcardToPopulate.getAnswer(), flashcardToTest.getAnswer());
-    assertEquals(flashcard, flashcardToTest);
+    assertEquals(flashcardToPopulate, flashcardToTest);
   }
 
   @Test

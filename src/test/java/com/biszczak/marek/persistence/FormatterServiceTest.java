@@ -42,14 +42,6 @@ class FormatterServiceTest {
   }
 
   @Test
-  void shouldReturnEmptyListIfEmptyListIsGiven(){
-    List listToCompare = Collections.EMPTY_LIST;
-    List listToCheck = Collections.EMPTY_LIST;
-    List testList = formatterService.getFlashcardsToFormat(listToCheck);
-    assertEquals(listToCompare,testList);
-  }
-
-  @Test
   void shouldReturnEmptyList(){
     assertThrows(EmptyQuestionListException.class,()->{
       formatterService.getFlashcardsToFormat(Collections.emptyList());
