@@ -1,5 +1,6 @@
 package com.biszczak.marek.display;
 
+import com.biszczak.marek.Flashcard;
 import com.biszczak.marek.display.themes.Themes;
 
 import java.util.Arrays;
@@ -33,6 +34,9 @@ public class DisplayContext {
 
   public void printMessage(String msg) {
     displayStrategy.printMessage(msg);
+  }
+  public void showAllQuestions(List<Flashcard> flashcards){
+    displayStrategy.showAllQuestions(flashcards);
   }
 
   public void printThemes() {

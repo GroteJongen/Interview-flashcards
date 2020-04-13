@@ -8,7 +8,8 @@ import lombok.Getter;
 public enum Themes {
   ASTRIX_DISPLAY_STRATEGY("Astrix display"),
   SLASH_DISPLAY_STRATEGY("Slash display Strategy"),
-  TRIANGLE_DISPLAY_STRATEGY("Triangle display strategy");
+  TRIANGLE_DISPLAY_STRATEGY("Triangle display strategy"),
+  BACK("Back");
 
   private final String themeName;
 }

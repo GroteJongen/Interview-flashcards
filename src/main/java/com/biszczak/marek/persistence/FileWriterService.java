@@ -21,7 +21,6 @@ public class FileWriterService {
 
     } catch (IOException e) {
       System.out.println(EXCEPTION_MSG);
-      // TODO Implement business exceptions
     }
   }
 
@@ -30,6 +29,5 @@ public class FileWriterService {
       writeLine(flashcard, fileName);
     }
     System.out.println(EXCEPTION_MSG);
-    // TODO Implement business exceptions
   }
 }

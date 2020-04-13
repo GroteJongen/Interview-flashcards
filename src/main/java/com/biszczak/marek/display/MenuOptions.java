@@ -14,6 +14,7 @@ public enum MenuOptions {
     EXPORT("Export"),
     PRINT_QUESTIONS("Print questions"),
     ADD_FLASHCARD("Add flashcard"),
+    DELETE("Delete"),
     EXIT("Exit");
 
     private final String optionName;

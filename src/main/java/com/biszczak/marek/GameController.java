@@ -4,6 +4,9 @@ import com.biszczak.marek.display.themes.AstrixTheme;
 import com.biszczak.marek.display.DisplayContext;
 import com.biszczak.marek.display.themes.SlashTheme;
 import com.biszczak.marek.display.themes.TriangleTheme;
+import com.biszczak.marek.exceptions.EmptyQuestionRepositoryException;
+import com.biszczak.marek.exceptions.WrongFileFormatException;
+import com.biszczak.marek.exceptions.WrongFilePathException;
 import com.biszczak.marek.input.InputContext;
 import com.biszczak.marek.persistence.*;
 
@@ -14,12 +17,20 @@ class GameController {
   private static final String ADD_ANSWER_MSG = "Give me the answer";
   private static final String QUESTION_ALREADY_EXISTS_MSG = "This question already exists";
   private static final String FLASHCARDS_SAVED_MSG = "Flashcards have been saved";
-  private static final String FLASHCARDS_IMPORTED_MSG = "Flashcards have been imported";
   private static final String FILENAME_INPUT_MSG = "Put filename in";
   private static final String CORRECT_ANSWER = "Correct answer";
   private static final String WRONG_ANSWER_MESSAGE = "Wrong answer. The correct one is \"%s\":";
   private static final String PRINT_THE_DEFINITION = "Print the definition of \"%s\":";
+  private static final String INPUT_TO_DELETE_MSG = "Give me the question";
   private static final String TIMES_TO_ASK_MSG = "How many times to ask";
+  private static final String FLASHCARD_DELETED_MSG = "Flashcard deleted";
+  private static final String FLASHCARD_NOT_DELETED_MSG = "Flashcard not found";
+  private static final String WRONG_NUMBER_FORMAT_MSG = "Give me valid number please";
+  private static final String EMPTY_MAP_REPOSITORY_EXCEPTION =
+      "There are no questions on your list";
+  private static final String WRONG_FILEPATH_EXCEPTION = "Wrong filepath given";
+  private static final String WRONG_FILE_FORMAT_EXCEPTION = "Wrong file format given";
+
 
   private DisplayContext displayContext;
   private InputContext inputContext;
@@ -28,7 +39,7 @@ class GameController {
   private FileReaderService fileReaderService;
   private FileWriterService fileWriterService;
 
-  public GameController(
+  GameController(
       DisplayContext displayContext,
       InputContext inputContext,
       PersistenceContext persistenceContext,
@@ -48,13 +59,14 @@ class GameController {
 
     String command;
     displayContext.printGreetings();
+    // TODO fool proof all methods
     while (!exit) {
       displayContext.printMenu();
       command = inputContext.getCommand();
       switch (command) {
         case "1":
         case "change theme":
-          chageTheme();
+          changeTheme();
           break;
         case "2":
         case "ask":
@@ -81,36 +93,46 @@ class GameController {
           add();
           break;
         case "8":
+        case "delete":
+          delete();
+          break;
+        case "9":
         case "exit":
-         exit = exit();
+          exit = exit();
       }
     }
   }
 
   private void showAllQuestions() {
-    List<String> flashcards = persistenceContext.getAllQuestionsToList();
-    displayContext.printQuestions(flashcards);
+    List<Flashcard> flashcards = persistenceContext.getAllFlashcards();
+    displayContext.showAllQuestions(flashcards);
   }
 
   private void add() {
     displayContext.printMessage(ADD_QUESTION_MSG);
     String question = inputContext.getQuestion();
-    if (persistenceContext.getByQuestion(question) == null) {
-      displayContext.printMessage(ADD_ANSWER_MSG);
-      persistenceContext.save(new Flashcard(question, inputContext.getAnswer()));
+    if (persistenceContext.getByQuestion(question) != null) {
+      displayContext.printMessage(QUESTION_ALREADY_EXISTS_MSG);
+      return;
     }
-    displayContext.printMessage(QUESTION_ALREADY_EXISTS_MSG);
+    displayContext.printMessage(ADD_ANSWER_MSG);
+    persistenceContext.save(new Flashcard(question, inputContext.getAnswer()));
   }
 
   private void importFlashcards() {
-    print(FILENAME_INPUT_MSG);
-    String filename = inputContext.getCommand();
-    List<Flashcard> flashcards =
-        formatterService.getFlashcardsToFormat(fileReaderService.readFile(filename));
-    for (Flashcard flashcard : flashcards) {
-      persistenceContext.save(flashcard);
+    try {
+      print(FILENAME_INPUT_MSG);
+      String filename = inputContext.getCommand();
+      List<Flashcard> flashcards =
+          formatterService.getFlashcardsToFormat(fileReaderService.readFile(filename));
+      for (Flashcard flashcard : flashcards) {
+        persistenceContext.save(flashcard);
+      }
+    } catch (WrongFilePathException e) {
+      print(WRONG_FILEPATH_EXCEPTION);
+    } catch (WrongFileFormatException e){
+      print(WRONG_FILE_FORMAT_EXCEPTION);
     }
-    displayContext.printMessage(FLASHCARDS_IMPORTED_MSG);
   }
 
   private void export() {
@@ -121,28 +143,42 @@ class GameController {
   }
 
   private void ask() {
-    RandomQuestsionService randomQuestionService =
-        new RandomQuestsionService(persistenceContext.getAllQuestionsToList());
+    RandomQuestionService randomQuestionService =
+        new RandomQuestionService(persistenceContext.getAllQuestionsToList());
     print(TIMES_TO_ASK_MSG);
-    int timesToAsk = Integer.parseInt(inputContext.getCommand());
+    int timesToAsk = getValidInteger();
 
     for (int i = 0; i < timesToAsk; i++) {
+      try {
+        String randomQuestion = randomQuestionService.getRandomQuestion();
+        String correctAnswer = (persistenceContext.getByQuestion(randomQuestion)).getAnswer();
+        print(String.format(PRINT_THE_DEFINITION, randomQuestion));
+        String userAnswer = inputContext.getAnswer();
 
-      String randomQuestion = randomQuestionService.getRandomQuestion();
-      String correctAnswer = (persistenceContext.getByQuestion(randomQuestion)).getAnswer();
-
-      print(String.format(PRINT_THE_DEFINITION, randomQuestion));
-      String userAnswer = inputContext.getAnswer();
-
-      if (userAnswer.equals(correctAnswer)) {
-        print(CORRECT_ANSWER);
-        continue;
+        if (userAnswer.equals(correctAnswer)) {
+          print(CORRECT_ANSWER);
+          continue;
+        }
+        print(String.format(WRONG_ANSWER_MESSAGE, correctAnswer));
+      } catch (EmptyQuestionRepositoryException error) {
+        print(EMPTY_MAP_REPOSITORY_EXCEPTION);
+        break;
       }
-      print(String.format(WRONG_ANSWER_MESSAGE, correctAnswer));
     }
   }
 
-  private void chageTheme() {
+  private void delete() {
+    print(INPUT_TO_DELETE_MSG);
+    String question = inputContext.getQuestion();
+    if (persistenceContext.getByQuestion(question) != null) {
+      persistenceContext.delete(persistenceContext.getByQuestion(question));
+      print(FLASHCARD_DELETED_MSG);
+      return;
+    }
+    print(FLASHCARD_NOT_DELETED_MSG);
+  }
+
+  private void changeTheme() {
     displayContext.printThemes();
     String command = inputContext.getCommand();
     switch (command) {
@@ -158,15 +194,28 @@ class GameController {
       case "triangle":
         displayContext.setDisplayStrategy(new TriangleTheme());
         break;
+      case "4":
+      case "go back":
+        break;
     }
   }
 
   private void print(String msg) {
     displayContext.printMessage(msg);
   }
-  private boolean exit(){
+
+  private boolean exit() {
     displayContext.printGoodbye();
     return true;
+  }
 
+  private int getValidInteger() {
+    while (true) {
+      try {
+        return Integer.parseInt(inputContext.getCommand());
+      } catch (NumberFormatException e) {
+        print(WRONG_NUMBER_FORMAT_MSG);
+      }
+    }
   }
 }

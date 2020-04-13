@@ -1,5 +1,6 @@
 package com.biszczak.marek.display.themes;
 
+import com.biszczak.marek.Flashcard;
 import com.biszczak.marek.display.DisplayStrategy;
 
 import java.util.List;
@@ -18,6 +19,25 @@ public class SlashTheme implements DisplayStrategy {
     }
     stringBuilder.append(BOARDER + NEW_LINE);
     System.out.println(stringBuilder);
+  }
+
+  @Override
+  public void showAllQuestions(List<Flashcard> flashcards) {
+    final String arrow = " --> ";
+    final String semicolon  = " : ";
+
+    StringBuilder stringBuilder = new StringBuilder();
+    if(!flashcards.isEmpty()){
+      stringBuilder.append(BOARDER + NEW_LINE);
+      for (int i = 0; i < flashcards.size(); i++) {
+
+        stringBuilder.append(i + 1).append(arrow).append(flashcards.get(i).getQuestion()).append(semicolon).append(flashcards.get(i).getAnswer()).append(NEW_LINE);
+      }
+      stringBuilder.append(BOARDER + NEW_LINE);
+      System.out.println(stringBuilder);
+      return;
+    }
+    System.out.println("List of your questions is empty");
   }
 
   @Override
