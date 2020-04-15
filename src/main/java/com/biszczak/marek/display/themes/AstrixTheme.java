@@ -27,20 +27,23 @@ public class AstrixTheme implements DisplayStrategy {
   @Override
   public void showAllQuestions(List<Flashcard> flashcards) {
     final String arrow = " --> ";
-    final String semicolon  = " : ";
+    final String semicolon = " : ";
 
     StringBuilder stringBuilder = new StringBuilder();
-    if(!flashcards.isEmpty()){
-      stringBuilder.append(BOARDER + NEW_LINE);
-      for (int i = 0; i < flashcards.size(); i++) {
 
-        stringBuilder.append(i + 1).append(arrow).append(flashcards.get(i).getQuestion()).append(semicolon).append(flashcards.get(i).getAnswer()).append(NEW_LINE);
-      }
-      stringBuilder.append(BOARDER + NEW_LINE);
-      System.out.println(stringBuilder);
-      return;
+    stringBuilder.append(BOARDER + NEW_LINE);
+    for (int i = 0; i < flashcards.size(); i++) {
+
+      stringBuilder
+          .append(i + 1)
+          .append(arrow)
+          .append(flashcards.get(i).getQuestion())
+          .append(semicolon)
+          .append(flashcards.get(i).getAnswer())
+          .append(NEW_LINE);
     }
-    System.out.println("List of your questions is empty");
+    stringBuilder.append(BOARDER + NEW_LINE);
+    System.out.println(stringBuilder);
   }
 
   @Override

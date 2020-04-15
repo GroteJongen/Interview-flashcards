@@ -5,36 +5,36 @@ import com.biszczak.marek.Flashcard;
 import java.util.List;
 
 public class PersistenceContext {
-  private PersistenceStrategy persistanceStrategy;
+  private PersistenceStrategy persistenceStrategy;
 
   public PersistenceContext(PersistenceStrategy persistanceStrategy) {
-    this.persistanceStrategy = persistanceStrategy;
+    this.persistenceStrategy = persistanceStrategy;
   }
 
   public Flashcard save(Flashcard flashcard) {
-    return this.persistanceStrategy.save(flashcard);
+    return this.persistenceStrategy.save(flashcard);
   }
 
   public Flashcard update(Flashcard flashcard) {
-    return this.persistanceStrategy.update(flashcard);
+    return this.persistenceStrategy.update(flashcard);
   }
 
   public void delete(Flashcard flashcard) {
-    this.persistanceStrategy.delete(flashcard);
+    this.persistenceStrategy.delete(flashcard);
   }
 
   public List<Flashcard> getAllFlashcards() {
-    return this.persistanceStrategy.getAllFlashcards();
+    return this.persistenceStrategy.getAllFlashcards();
   }
 
   public Flashcard getByQuestion(String question) {
-    return this.persistanceStrategy.getByQuestion(question);
+    return this.persistenceStrategy.getByQuestion(question);
   }
 
   public Flashcard getByAnswer(String answer) {
-    return this.persistanceStrategy.getByAnswer(answer);
+    return this.persistenceStrategy.getByAnswer(answer);
   }
   public List<String> getAllQuestionsToList(){
-    return this.persistanceStrategy.getAllQuestionsToList();
+    return this.persistenceStrategy.getAllQuestionsToList();
   }
 }

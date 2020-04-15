@@ -30,6 +30,7 @@ class GameController {
       "There are no questions on your list";
   private static final String WRONG_FILEPATH_EXCEPTION = "Wrong filepath given";
   private static final String WRONG_FILE_FORMAT_EXCEPTION = "Wrong file format given";
+  private static final String NO_QUESTIONS_IN_REPOSITORY = "There are no questions in your repository";
 
 
   private DisplayContext displayContext;
@@ -105,7 +106,12 @@ class GameController {
 
   private void showAllQuestions() {
     List<Flashcard> flashcards = persistenceContext.getAllFlashcards();
-    displayContext.showAllQuestions(flashcards);
+    if(!flashcards.isEmpty()){
+      displayContext.showAllQuestions(flashcards);
+    }else {
+      displayContext.printMessage(NO_QUESTIONS_IN_REPOSITORY);
+    }
+
   }
 
   private void add() {
