@@ -11,12 +11,8 @@ public class PersistenceContext {
     this.persistenceStrategy = persistanceStrategy;
   }
 
-  public Flashcard save(Flashcard flashcard) {
-    return this.persistenceStrategy.save(flashcard);
-  }
-
-  public Flashcard update(Flashcard flashcard) {
-    return this.persistenceStrategy.update(flashcard);
+  public void save(Flashcard flashcard) {
+    this.persistenceStrategy.save(flashcard);
   }
 
   public void delete(Flashcard flashcard) {
@@ -31,9 +27,6 @@ public class PersistenceContext {
     return this.persistenceStrategy.getByQuestion(question);
   }
 
-  public Flashcard getByAnswer(String answer) {
-    return this.persistenceStrategy.getByAnswer(answer);
-  }
   public List<String> getAllQuestionsToList(){
     return this.persistenceStrategy.getAllQuestionsToList();
   }

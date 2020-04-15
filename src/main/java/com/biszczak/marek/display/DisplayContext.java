@@ -35,16 +35,13 @@ public class DisplayContext {
   public void printMessage(String msg) {
     displayStrategy.printMessage(msg);
   }
-  public void showAllQuestions(List<Flashcard> flashcards){
+
+  public void showAllQuestions(List<Flashcard> flashcards) {
     displayStrategy.showAllQuestions(flashcards);
   }
 
   public void printThemes() {
     displayStrategy.printList(themes);
-  }
-
-  public void printQuestions(List<String> questions) {
-    displayStrategy.printList(questions);
   }
 
   public void setDisplayStrategy(DisplayStrategy displayStrategy) {

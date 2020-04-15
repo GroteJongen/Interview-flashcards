@@ -19,7 +19,7 @@ public class RandomQuestionService {
     return questions.get(generateUniqueIndex());
   }
 
-   void checkIfAllIntegersAreUsed() {
+   private void checkIfAllIntegersAreUsed() {
     if (questions.size() == uniqueIntegers.size()) {
       uniqueIntegers.clear();
     }

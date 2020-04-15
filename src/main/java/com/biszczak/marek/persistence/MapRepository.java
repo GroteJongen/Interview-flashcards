@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("SuspiciousMethodCalls")
 public class MapRepository implements PersistenceStrategy {
   private Map<String, String> repository = new HashMap<>();
 
