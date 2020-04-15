@@ -1,4 +1,4 @@
-package com.biszczak.marek;
+package com.biszczak.marek.input;
 
 public class InputContext {
     public InputContext(InputStrategy inputStrategy) {
@@ -17,9 +17,5 @@ public class InputContext {
 
     public String getCommand() {
         return inputStrategy.getCommand();
-    }
-
-    public void setInputStrategy(InputStrategy inputStrategy) {
-        this.inputStrategy = inputStrategy;
     }
 }
