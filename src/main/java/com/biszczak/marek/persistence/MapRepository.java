@@ -38,15 +38,6 @@ public class MapRepository implements PersistenceStrategy {
   }
 
   @Override
-  public Flashcard update(Flashcard flashcard) {
-    if (!repository.containsValue(flashcard)) {
-      return save(flashcard);
-    }
-    repository.replace(flashcard.getQuestion(), flashcard.getAnswer());
-    return flashcard;
-  }
-
-  @Override
   public List<Flashcard> getAllFlashcards() {
     List<Flashcard> flashcards = new ArrayList<>();
     for (String question : repository.keySet()) {

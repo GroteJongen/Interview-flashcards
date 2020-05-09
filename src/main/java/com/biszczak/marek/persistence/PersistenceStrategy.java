@@ -12,8 +12,6 @@ public interface PersistenceStrategy {
 
     Flashcard getByAnswer(String answer);
 
-    Flashcard update(Flashcard flashcard);
-
     List<Flashcard> getAllFlashcards();
 
     void delete(Flashcard flashcard);

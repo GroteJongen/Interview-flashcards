@@ -40,14 +40,6 @@ class MapRepositoryTest {
   }
 
   @Test
-  void shouldUpdateFlashcardInMap() {
-    Flashcard flashcardToTest = mapRepository.update(flashcard);
-    assertEquals(flashcard.getQuestion(), flashcardToTest.getQuestion());
-    assertEquals(flashcard.getAnswer(), flashcardToTest.getAnswer());
-    assertEquals(flashcard, flashcardToTest);
-  }
-
-  @Test
   void shouldReturnValidListOfFlashcards() {
     mapRepository.save(flashcardToPopulate);
     List<Flashcard> flashcardList = new ArrayList<>();

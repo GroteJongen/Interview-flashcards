@@ -26,8 +26,7 @@ class GameController {
   private static final String FLASHCARD_DELETED_MSG = "Flashcard deleted";
   private static final String FLASHCARD_NOT_DELETED_MSG = "Flashcard not found";
   private static final String WRONG_NUMBER_FORMAT_MSG = "Give me valid number please";
-  private static final String EMPTY_MAP_REPOSITORY_EXCEPTION =
-      "There are no questions on your list";
+  private static final String EMPTY_MAP_REPOSITORY_EXCEPTION = "There are no questions on your list";
   private static final String WRONG_FILEPATH_EXCEPTION = "Wrong filepath given";
   private static final String WRONG_FILE_FORMAT_EXCEPTION = "Wrong file format given";
   private static final String NO_QUESTIONS_IN_REPOSITORY = "There are no questions in your repository";
@@ -60,7 +59,6 @@ class GameController {
 
     String command;
     displayContext.printGreetings();
-    // TODO fool proof all methods
     while (!exit) {
       displayContext.printMenu();
       command = inputContext.getCommand();
