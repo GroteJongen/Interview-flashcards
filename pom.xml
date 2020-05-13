@@ -12,6 +12,7 @@
         <junit-jupiter-engine.version>5.5.2</junit-jupiter-engine.version>
         <lombok-maven-plugin.version>1.18.10.0</lombok-maven-plugin.version>
         <mysql-connector-java.version>8.0.20</mysql-connector-java.version>
+        <commons-io.version>2.5</commons-io.version>
     </properties>
     <dependencies>
         <dependency>
@@ -29,6 +30,11 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql-connector-java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
         </dependency>
     </dependencies>
     <build>

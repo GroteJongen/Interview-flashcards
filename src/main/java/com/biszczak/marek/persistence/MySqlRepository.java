@@ -2,18 +2,48 @@ package com.biszczak.marek.persistence;
 
 import com.biszczak.marek.Flashcard;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class MySqlRepository implements PersistenceStrategy {
-  private final String connectionString =
-      "jdbc:mysql://localhost:3306/flashcarddb?&serverTimezone=UTC";
-  private final String user = "root";
-  private final String password = "goyz2v85";
-  private final String tableName = "flashcards";
-  private final String questionColumn = "question";
-  private final String answerColumn = "answer";
+  private String connectionString;
+  private String user;
+  private String password;
+  private String tableName;
+  private String questionColumn;
+  private String answerColumn;
+
+  private MySqlRepository() {}
+
+  static MySqlRepository fromPropertyFile() {
+    MySqlRepository mySqlRepository = new MySqlRepository();
+    Properties properties = readPropertyFile();
+    mySqlRepository.setConnectionString(
+        properties.getProperty("databaseAddress")
+            + properties.getProperty("databaseName")
+            + properties.getProperty("parameters"));
+    mySqlRepository.setUser(properties.getProperty("user"));
+    mySqlRepository.setPassword(properties.getProperty("password"));
+    mySqlRepository.setTableName(properties.getProperty("tableName"));
+    mySqlRepository.setQuestionColumn(properties.getProperty("questionColumnName"));
+    mySqlRepository.setAnswerColumn(properties.getProperty("answerColumnName"));
+    return mySqlRepository;
+  }
+
+  private static Properties readPropertyFile() {
+    Properties property = null;
+    try (FileInputStream fileInputStream = new FileInputStream("C:\\Users\\Marek\\interviewflashcards\\src\\test\\resources\\mySqlTest.properties")) {
+      property = new Properties();
+      property.load(fileInputStream);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return property;
+  }
 
   @Override
   public Flashcard save(Flashcard flashcard) {
@@ -83,9 +113,6 @@ public class MySqlRepository implements PersistenceStrategy {
       while (resultSet.next()) {
         flashcards.add(
             new Flashcard(resultSet.getString(questionColumn), resultSet.getString(answerColumn)));
-        if (!resultSet.next()) {
-          break;
-        }
       }
     } catch (SQLException e) {
       e.printStackTrace();
@@ -114,14 +141,47 @@ public class MySqlRepository implements PersistenceStrategy {
       ResultSet resultSet =
           statement.executeQuery(String.format(selectFormat, questionColumn, tableName));
       while (resultSet.next()) {
-        if (!resultSet.next()) {
-          break;
-        }
         questions.add(resultSet.getString(questionColumn));
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
     return questions;
+  }
+
+  String getConnectionString() {
+    return connectionString;
+  }
+
+  private void setConnectionString(String connectionString) {
+    this.connectionString = connectionString;
+  }
+
+  String getUser() {
+    return user;
+  }
+
+  private void setUser(String user) {
+    this.user = user;
+  }
+
+  String getPassword() {
+    return password;
+  }
+
+  private void setPassword(String password) {
+    this.password = password;
+  }
+
+  private void setTableName(String tableName) {
+    this.tableName = tableName;
+  }
+
+  private void setQuestionColumn(String questionColumn) {
+    this.questionColumn = questionColumn;
+  }
+
+  private void setAnswerColumn(String answerColumn) {
+    this.answerColumn = answerColumn;
   }
 }

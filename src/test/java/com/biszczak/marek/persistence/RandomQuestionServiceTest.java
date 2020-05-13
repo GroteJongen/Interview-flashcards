@@ -11,9 +11,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RandomQuestionServiceTest {
-  List<String> testQuestions = populateTestList();
-  RandomQuestionService randomQuestionService = new RandomQuestionService(testQuestions);
-  int listSize = testQuestions.size();
+  private List<String> testQuestions = populateTestList();
+  private RandomQuestionService randomQuestionService = new RandomQuestionService(testQuestions);
+  private int listSize = testQuestions.size();
 
   @Test
   void shouldReturnRandomQuestion() {
